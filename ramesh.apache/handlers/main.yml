@@ -1,10 +1,10 @@
 ---
-# handlers file for roles
-- name: Restart Debian
-  service:
-    name:"{{apache_pachage_deb}}"
+# handlers file for asquarezone.apache
+- name: restart debian apache
+  service: 
+    name: "{{apache_package_deb}}"
     state: restarted
-- name: Restart RedHat
+- name: restart rhel apache
   service:
-    name:"{{apache_package_redhat}}"
+    name: "{{apache_package_rhel}}"
     state: restarted
