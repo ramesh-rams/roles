@@ -1,2 +1,34 @@
 ---
 # tasks file for roles
+- name: apche for Ubuntu
+  apt:
+    name: "{{apache_pachage_deb}}"
+    state: present
+  when: ansible_os_family == "Debian"
+- name: apache for rhn_channel
+  yum:
+    name: "{{apache_package_redhat}}"
+    state: present
+    when: ansible_os_family == "RedHat"
+- name: set service name for Debian
+  set_fact:
+    apache_package: "{{apache_pachage_deb}}"
+  when: ansible_os_family == "Debian"
+- name: set service name for Redhat
+  set_fact:
+    apache_package: "{{apache_package_redhat}}"
+  when: ansible_os_family == "RedHat"
+- name: Service enable and started
+  service:
+    name: "{{apache_package}}"
+    enabled: yes
+    state: started
+- name: Test by print
+  debug:
+    msg: firing notification for Ubuntu
+  notify: Restart Debian
+  when: ansible_os_family == "Debian"
+- Name: Copying file to index.html
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html

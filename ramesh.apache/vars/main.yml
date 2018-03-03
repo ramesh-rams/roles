@@ -1,2 +1,5 @@
 ---
-# vars file for ramesh.apache
+# vars file for roles
+apache_pachage_deb: apache2
+apache_package_redhat: httpd
+homepage_path: /var/www/html/index.html

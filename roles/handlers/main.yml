@@ -1,2 +1,10 @@
 ---
 # handlers file for roles
+- name: Restart Debian
+  service:
+    name:"{{apache_pachage_deb}}"
+    state: restarted
+- name: Restart RedHat
+  service:
+    name:"{{apache_package_redhat}}"
+    state: restarted
